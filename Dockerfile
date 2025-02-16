@@ -29,6 +29,8 @@ RUN git clone ${PROJECT_GIT_URL} /app
 
 WORKDIR /app
 
+RUN cargo install sqlx-cli
+
 COPY . .
 
 CMD ["/app/run.sh"]
