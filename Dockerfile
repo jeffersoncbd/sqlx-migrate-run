@@ -29,8 +29,10 @@ RUN git clone ${PROJECT_GIT_URL} /app
 
 WORKDIR /app
 
-RUN cargo install sqlx-cli && sccache --show-stats && echo "Done!"
+RUN cargo install sqlx-cli && sccache --show-stats
 
 COPY . .
+RUN chmod +x /app/entrypoint.sh
 
-CMD ["sqlx database create && sqlx migrate run"]
+ENTRYPOINT ["/app/entrypoint.sh"]
+
