@@ -31,7 +31,6 @@ WORKDIR /app
 
 RUN cargo install sqlx-cli && sccache --show-stats
 
-COPY /usr/local/bin/sccache /usr/local/bin/sccache
 COPY . .
 RUN chmod +x /app/entrypoint.sh
 
