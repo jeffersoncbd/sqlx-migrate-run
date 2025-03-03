@@ -8,7 +8,7 @@ ARG MINIO_SECRET_ACCESS_KEY
 
 ARG PROJECT_GIT_URL
 
-RUN apt-get update && apt-get install -y --no-install-recommends tar \
+RUN apt-get update && apt-get install -y --no-install-recommends tar awscli \
   && rm -rf /var/lib/apt/lists/*
 
 ADD ${SCCACHE_URL} /sccache.tar.gz
@@ -31,6 +31,7 @@ WORKDIR /app
 
 RUN cargo install sqlx-cli && sccache --show-stats
 
+COPY /usr/local/bin/sccache /usr/local/bin/sccache
 COPY . .
 RUN chmod +x /app/entrypoint.sh
 
